@@ -8,7 +8,7 @@
           <!-- Breadcrumbs -->
           <div class="w-full max-w-xl justify-center">
             <div class="text-md font-medium breadcrumbs">
-              <ul class="text-red-500">
+              <ul class="text-accent">
                 <li><NuxtLink class="text-gray-500">Schools</NuxtLink></li>
                 <li>
                   <NuxtLink class="text-gray-500">{{
@@ -30,13 +30,26 @@
           </div>
           <!-- school heading -->
           <div class="flex flex-col w-full max-w-xl">
-            <div class="py-2 font-normal text-primary">
-              <h1 class="font-heading text-4xl">
-                {{ school?.school_name }}
-              </h1>
+            <div class="flex flex-row gap-2 py-2 font-normal text-primary">
+              <div class="flex">
+                <h1 class="font-heading text-2xl md:text-4xl">
+                  {{ school?.school_name }}
+                </h1>
+              </div>
+              <div class="pt-1">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/7641/7641727.png"
+                  alt=""
+                  class="w-7 h-auto"
+                />
+              </div>
             </div>
             <!-- school deatails -->
-            <div class="text-gray-500">{{ school?.school_web }}</div>
+            <div class="text-gray-500 hover:text-info">
+              <a :href="school?.school_web" rel="nofollow">{{
+                school?.school_web
+              }}</a>
+            </div>
             <div class="py-5 text-gray-500 flex">
               <div>
                 <img
@@ -54,16 +67,25 @@
             <!-- rating and review -->
             <div>
               <div class="flex flex-1 py-2">
-                <div class="rating">
+                <div class="rating gap-2">
                   <input
                     type="radio"
                     name="rating-2"
                     class="mask mask-star-2 bg-orange-400"
                     checked
-                  />4.8
+                  />
+                  <p class="">4.8</p>
                 </div>
-                <div class="px-2">145 review</div>
+                <div class="px-2">
+                  <span> 145 reviews</span>
+                  <div
+                    class="text-sm text-info hover:text-indigo-900 cursor-pointer"
+                  >
+                    <a href="#my-modal-3">Write a review?</a>
+                  </div>
+                </div>
               </div>
+              <ReviewModal />
               <div class="flex flex-1 py-2">
                 <div
                   class="box-border h-10 w-12 p-4 rounded-lg bg-lime-500"
@@ -77,25 +99,31 @@
 
             <!-- button -->
             <div
-              class="flex flex-1 gap-2 md:items-center fixed bottom-0 inset-x-5 md:sticky z-40"
+              class="flex flex-1 gap-2 md:items-center fixed bottom-0 inset-auto md:sticky z-40"
             >
-              <div class="">
+              <div class="flex">
                 <button
-                  class="btn btn-accent w-48 max-w-xs mt-5 mb-2 text-base text-secondary"
+                  class="btn btn-accent w-44 md:w-48 max-w-xs mt-5 mb-2 text-base text-secondary"
                 >
-                  Apply Now
+                  <label for="my-modal-1" class="cursor-pointer"
+                    >Apply Now</label
+                  >
                 </button>
               </div>
-              <div class="">
+              <div class="flex">
                 <button
-                  class="btn text-accent w-48 max-w-xs mt-5 mb-2 bg-red-100 text-base border-none"
+                  class="btn text-accent w-44 md:w-48 max-w-xs mt-5 mb-2 bg-red-100 text-base border-none"
                 >
-                  Admission Enquiry
+                  <label for="my-modal-1" class="cursor-pointer"
+                    >Admission Enquiry</label
+                  >
                 </button>
               </div>
             </div>
           </div>
         </div>
+        <Enquiry_modal />
+
         <!-- image view -->
         <div class="container flex flex-col md:flex-row-reverse">
           <!-- big image -->
@@ -134,12 +162,47 @@
       </div>
     </div>
   </section>
+
+  <!-- <ul>
+    <li v-for="item in modifiedProducts">
+      averageRating: {{ item.averageRating }}
+    </li>
+  </ul> -->
 </template>
 
 <script setup lang="ts">
 import { useSchoolStore } from "~~/stores/school";
+import Enquiry_modal from "./Enquiry_modal.vue";
 const schoolStore = useSchoolStore();
 const school = schoolStore.jsonData;
+const sch_id = school?.school_id;
+console.log(sch_id);
+
+const ratings = await useFetch("/api/fetchRating", {
+  method: "POST",
+  body: {
+    school_id: sch_id,
+  },
+});
+const rate = ref();
+rate.value = ratings.data.value;
+
+// const modifiedProducts = rate.value.map((product) => {
+//   const average =
+//     product.rating.reduce((total, next) => total + parseInt(next.rating), 0) /
+//     product.rating.length;
+//   return {
+//     ...product,
+//     averageRating: average.toFixed(2),
+//   };
+// });
+
+// avgRating.value = sum / rate.value.length;
+// console.log(avgRating.value);
+// avgRating.value = rating.data.value?._sum.rating;
+// avg.value = rating.data.value?._count.id;
+// console.log(avgRating.value / avg.value);
+
 // const store = useDetailsStore();
 // console.log(store.school);
 </script>

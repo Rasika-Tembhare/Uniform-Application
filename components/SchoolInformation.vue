@@ -6,16 +6,49 @@
       <div class="flex flex-col md:flex-row w-full max-w-full">
         <div
           tabindex="0"
-          class="collapse collapse-plus border border-base-300 bg-gray-100 rounded-box w-full"
+          class="collapse collapse-open border border-base-300 rounded-box w-full bg-gray-100 shadow-md"
+          @click="toggle"
         >
-          <input type="checkbox" />
           <div
-            class="font-heading collapse-title text-2xl font-medium text-primary"
+            class="font-heading collapse-title text-lg md:text-2xl font-medium cursor-pointer text-primary"
+            @click="isHidden = !isHidden"
           >
             School Information
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 inline-block float-right"
+              v-if="showSvg1"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 12h-15"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 inline-block float-right"
+              v-if="showSvg2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
           </div>
-          <div class="collapse-content">
-            <div class="overflow-x-auto relative">
+          <div class="collapse-content" v-if="isHidden">
+            <div
+              class="overflow-x-auto relative border border-base-100 rounded-2xl md:rounded-2xl shadow-md"
+            >
               <table class="table-auto w-full md:w-full">
                 <tbody class="bg-secondary">
                   <!-- row 1 -->
@@ -86,35 +119,38 @@
                   </tr>
                   <tr
                     v-if="
-                      (school?.sch_hostel == 'Day School' ||
-                        school?.sch_hostel == 'Day cum Residential School') &&
-                      school?.res_fees != '' &&
-                      school?.day_fees != 0
+                      (school?.school_hostel == 'Day School' ||
+                        school?.school_hostel ==
+                          'Day cum Residential School') &&
+                      school?.avg_fees_day != '' &&
+                      school?.avg_fees_day != null
                     "
                   >
                     <td class="p-2 border-b border-b-gray-200">
                       <strong>Average Day Fees</strong>
                     </td>
                     <td class="p-2 border-b border-b-gray-200">
-                      {{ (school?.day_fees * 12).toFixed(1) }} per year
+                      {{ (school?.avg_fees_day * 12).toFixed(1) }} per year
                     </td>
                   </tr>
                   <tr
                     v-if="
-                      (school?.sch_hostel == 'Residential School' ||
-                        school?.sch_hostel == 'Day cum Residential School') &&
-                      school?.res_fees != '' &&
-                      school?.day_fees != 0
+                      (school?.school_hostel == 'Residential School' ||
+                        school?.school_hostel ==
+                          'Day cum Residential School') &&
+                      school?.avg_fees_residential != '' &&
+                      school?.avg_fees_day != null
                     "
                   >
                     <td class="p-2 border-b border-b-gray-200">
                       <strong>Average Residential Fees</strong>
                     </td>
                     <td class="p-2 border-b border-b-gray-200">
-                      {{ (school?.res_fees * 12).toFixed(1) }}
+                      {{ (school?.avg_fees_residential * 12).toFixed(1) }} per
+                      year
                     </td>
                   </tr>
-                  <tr v-if="school?.alt_name != ''">
+                  <tr v-if="school?.alt_name != '' && school?.alt_name != null">
                     <td class="p-2 border-b border-b-gray-200">
                       <strong>School Also Known As</strong>
                     </td>
@@ -213,7 +249,7 @@
                       <strong>Principal's Teaching Experience</strong>
                     </td>
                     <td class="p-2 border-b border-b-gray-200">
-                      {{ school?.principal_exp_t }}
+                      {{ school?.principal_exp_t }} years
                     </td>
                   </tr>
                   <tr v-if="school?.principal_exp_a != ''">
@@ -221,7 +257,7 @@
                       <strong>Principal's Admin Experience</strong>
                     </td>
                     <td class="p-2 border-b border-b-gray-200">
-                      {{ school?.principal_exp_a }}
+                      {{ school?.principal_exp_a }} years
                     </td>
                   </tr>
                 </tbody>
@@ -239,9 +275,6 @@ import { useSchoolStore } from "~~/stores/school";
 const schoolStore = useSchoolStore();
 const school = schoolStore.jsonData;
 
-// const avg_day_fees = round(school?.day_fees*12)
-
-// const sch_board = school.value.school_board;
 let boards = school?.school_board.trim();
 if (boards.indexOf(",") !== -1) {
   boards = boards.split(",");
@@ -253,6 +286,19 @@ if (boards.indexOf("and") !== -1) {
 //   if(board == "IGCSE(Cambridge)")
 // }
 const description = school?.school_desc;
+
+const isHidden = ref(true);
+const showSvg1 = ref(true); //minus
+const showSvg2 = ref(false); //plus
+function toggle() {
+  if (!showSvg2.value) {
+    showSvg2.value = true;
+    showSvg1.value = false;
+  } else {
+    showSvg2.value = false;
+    showSvg1.value = true;
+  }
+}
 </script>
 
 <style scoped></style>

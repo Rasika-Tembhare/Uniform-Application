@@ -5,7 +5,7 @@
     >
       <div class="flex flex-col w-full max-w-full">
         <div>
-          <h2 class="font-heading text-3xl text-primary font-normal">
+          <h2 class="font-heading text-xl md:text-3xl text-primary font-normal">
             Explore More Schools in {{ school?.school_city }}
           </h2>
         </div>
