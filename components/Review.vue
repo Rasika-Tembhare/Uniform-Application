@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="JsonData != ''">
     <div
       class="md:container md:mx-auto items-center justify-center bg-base-100 py-5"
     >
@@ -56,7 +56,6 @@
                   class="row-auto"
                   v-for="item in fetchedReviews"
                   :key="item?.school_id"
-                  :id="item?.school_id"
                 >
                   <div
                     class="card w-80 h-52 md:h-56 md:w-96 flex flex-col py-2 m-auto md:flex-row overflow-auto relative"
@@ -111,9 +110,9 @@
                       <div
                         class="text-sm md:text-base flex flex-col justify-items-center"
                       >
-                        <p>
+                        <span>
                           {{ item?.review }}
-                        </p>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -121,7 +120,10 @@
               </ul>
             </div>
 
-            <div class="grid grid-cols-1 place-items-center py-1">
+            <div
+              class="grid grid-cols-1 place-items-center py-1"
+              v-if="countReview >= 3"
+            >
               <button
                 class="btn text-primary hover:text-secondary text-base"
                 @click="reviewVisible += 3"
@@ -152,9 +154,9 @@
 
 <script setup lang="ts">
 import { isTemplateElement } from "@babel/types";
-// import { useSchoolStore } from "~~/stores/school";
-// const schoolStore = useSchoolStore();
-// const school = schoolStore.jsonData;
+import { useSchoolStore } from "~~/stores/school";
+const schoolStore = useSchoolStore();
+const school = schoolStore.jsonData;
 
 // code for collapse open and closed
 const isHidden = ref(true);
@@ -185,8 +187,12 @@ function normalizeDate(_date: Date) {
   });
 }
 
+const sch_id = school.school_id;
+console.log(sch_id);
+
 const review = await useFetch("/api/fetchReview", {
   method: "POST",
+  body: sch_id,
 });
 // stored reviews data into JsonData
 const JsonData = ref();
@@ -199,6 +205,14 @@ const reviewVisible = ref(3);
 const fetchedReviews = computed(() => {
   return JsonData.value.slice(0, reviewVisible.value);
 });
+
+const ratings = await useFetch("/api/fetchRating", {
+  method: "POST",
+  body: sch_id,
+});
+
+const countReview = ref();
+countReview.value = ratings.data.value?._count.review;
 </script>
 
 <style scoped></style>

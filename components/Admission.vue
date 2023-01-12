@@ -68,7 +68,7 @@
                     class="text-left"
                   ></div>
                 </li>
-                <li
+                <!-- <li
                   v-if="showDiv2"
                   class="relative -mb-px block border p-4 border-grey"
                 >
@@ -84,7 +84,7 @@
                     class="text-left"
                     v-html="school?.admission_update_new"
                   ></div>
-                </li>
+                </li> -->
                 <li
                   v-if="showDiv3"
                   class="relative -mb-px block border p-4 border-grey"

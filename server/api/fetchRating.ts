@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   try {
-    const sch_id = JSON.parse((event.node.req as any).body).toString();
+    const sch_id = (event.node.req as any).body;
     const rating = await prisma.reviews.aggregate({
       _avg: {
         rating: true,
@@ -11,7 +11,14 @@ export default defineEventHandler(async (event) => {
         review: true,
       },
       where: {
-        school_id: sch_id,
+        AND: [
+          {
+            school_id: sch_id.toString(),
+          },
+          {
+            approve: "Y",
+          },
+        ],
       },
     });
 

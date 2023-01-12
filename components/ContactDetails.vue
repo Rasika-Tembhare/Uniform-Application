@@ -81,7 +81,7 @@
                     <span class="">{{ school?.school_email }}</span>
                   </div>
                 </div>
-                <div class="flex gap-2 py-2">
+                <div class="flex gap-2 py-2" v-if="school?.school_contact != 0">
                   <div class="text-lg text-center">
                     <img
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp89_wwPzd-JzYOskOD00TdRze5T9oNlgFOG6-tXIksA&s"
