@@ -362,6 +362,7 @@
                   class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400"
                 >
                   4.8
+                  <!-- <input :value="setIds(item.school_id)" /> -->
                 </p>
               </div>
               <div
@@ -384,11 +385,11 @@
                 <p>{{ item.school_city }}</p>
               </div>
             </div>
-            <div class="flex flex-cols-2 gap-32 pl-1">
+            <div class="flex flex-cols-2 gap-48 pl-1">
               <div>
                 <p class="font-semibold text-sm">Annual Fees:</p>
               </div>
-              <div class="md:pl-8">
+              <div class="md:float-right">
                 <p
                   class="font-semibold text-sm"
                   v-if="
@@ -425,36 +426,36 @@
                 ></p>
               </div>
             </div>
-            <div
-              class="py-2 grid grid-cols-2 place-items-start md:place-items-start gap-6 md:gap-20"
-            >
-              <div class="">
-                <button
-                  class="inline-block btn btn-accent w-32 md:w-32 max-w-xs text-base text-secondary"
-                >
-                  <label for="my-modal-1" class="cursor-pointer"
-                    >Apply Now</label
-                  >
-                </button>
-              </div>
-              <div>
-                <button
-                  class="py-2 inline-block btn bg-white w-32 md:w-32 max-w-xs hover:bg-white text-black"
-                >
-                  <label for="my-modal-1" class="cursor-pointer">
-                    Send Enquiry
-                  </label>
-                </button>
-              </div>
-            </div>
           </div>
         </NuxtLink>
+        <div
+          class="py-2 grid grid-cols-2 place-items-start md:place-items-center gap-6 md:gap-20"
+        >
+          <div class="">
+            <label
+              for="my-modal-1"
+              class="py-2 inline-block btn btn-accent w-32 md:w-32 max-w-xs text-base text-secondary cursor-pointer"
+            >
+              Apply Now
+            </label>
+          </div>
+          <div>
+            <label
+              for="my-modal-1"
+              class="py-2 inline-block btn btn-white w-36 md:w-36 max-w-xs text-base text-primary hover:text-white cursor-pointer"
+            >
+              Send Enquiry
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <EnquiryModal />
 </template>
 <script setup lang="ts">
+import { json } from "stream/consumers";
+
 const jsonData = ref();
 const response = await useFetch("/api/fetchAll", {});
 jsonData.value = response.data.value;
@@ -511,4 +512,33 @@ function fetchEntries() {
       item.school_board.includes(board.value.other)
   );
 }
+const allRatings = ref();
+// async function setIds(id: string) {
+//   const fetchedRatings = await useFetch("/api/fetchAllRatings", {
+//     method: "POST",
+//     body: id,
+//   });
+
+//   allRatings.value = fetchedRatings.data.value?._avg.rating?.toFixed(1);
+//   console.log(allRatings.value);
+// }
+// for (let i = 0; i < jsonData.value.allUsers.length; i++) {
+//   const allRate = jsonData.value;
+//   // console.log("id:", allRate.allUsers[i]?.school_id);
+//   const allIds = allRate.allUsers[i]?.school_id;
+//   console.log(allIds);
+//   const fetchedRatings = await useFetch("/api/fetchAllRatings", {
+//     method: "POST",
+//     body: allIds,
+//   });
+
+//   allRatings.value = fetchedRatings.data.value?._avg.rating?.toFixed(1);
+//   console.log(allRatings.value);
+// }
+// const fetchedRatings = await useFetch("/api/fetchAllRatings", {
+//   method: "POST",
+// });
+
+// allRatings.value = fetchedRatings.data.value?._avg.rating?.toFixed(1);
+// console.log(allRatings.value);
 </script>

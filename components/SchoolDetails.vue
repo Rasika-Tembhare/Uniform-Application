@@ -67,21 +67,29 @@
             <!-- rating and review -->
             <div>
               <div class="flex flex-1 py-2">
-                <div class="rating gap-2">
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    class="mask mask-star-2 bg-orange-400"
-                    checked
-                  />
-                  <p class="">4.8</p>
-                </div>
-                <div class="px-2">
-                  <span> 145 reviews</span>
-                  <div
-                    class="text-sm text-info hover:text-indigo-900 cursor-pointer"
+                <div class="rating gap-1">
+                  <svg
+                    aria-hidden="true"
+                    class="w-6 h-6 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <a href="#my-modal-3">Write a review?</a>
+                    <title>First star</title>
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    ></path>
+                  </svg>
+                  <p class="">{{ rate }}</p>
+                </div>
+                <div class="px-3">
+                  <span> 145 reviews</span>
+                  <div>
+                    <label
+                      for="my-modal-2"
+                      class="text-sm text-info hover:text-indigo-900 cursor-pointer"
+                      >Write a review?</label
+                    >
                   </div>
                 </div>
               </div>
@@ -164,9 +172,7 @@
   </section>
 
   <!-- <ul>
-    <li v-for="item in modifiedProducts">
-      averageRating: {{ item.averageRating }}
-    </li>
+    <li>averageRating: {{ fetchEntries() }}</li>
   </ul> -->
 </template>
 
@@ -175,33 +181,20 @@ import { useSchoolStore } from "~~/stores/school";
 import Enquiry_modal from "./Enquiry_modal.vue";
 const schoolStore = useSchoolStore();
 const school = schoolStore.jsonData;
-const sch_id = school?.school_id;
+// const { school } = defineProps(["school"]);
+const sch_id = school.school_id;
 console.log(sch_id);
 
 const ratings = await useFetch("/api/fetchRating", {
   method: "POST",
-  body: {
-    school_id: sch_id,
-  },
+  body: sch_id,
 });
 const rate = ref();
-rate.value = ratings.data.value;
+rate.value = ratings.data.value?._avg.rating?.toFixed(1);
+// const avgReview = ratings.data.value?._count.review;
 
-// const modifiedProducts = rate.value.map((product) => {
-//   const average =
-//     product.rating.reduce((total, next) => total + parseInt(next.rating), 0) /
-//     product.rating.length;
-//   return {
-//     ...product,
-//     averageRating: average.toFixed(2),
-//   };
-// });
-
-// avgRating.value = sum / rate.value.length;
-// console.log(avgRating.value);
-// avgRating.value = rating.data.value?._sum.rating;
-// avg.value = rating.data.value?._count.id;
-// console.log(avgRating.value / avg.value);
+console.log(rate.value);
+// console.log(avgReview);
 
 // const store = useDetailsStore();
 // console.log(store.school);

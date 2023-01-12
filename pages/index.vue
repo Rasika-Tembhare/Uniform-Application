@@ -225,31 +225,33 @@
       v-for="item in fetchEntries()"
       v-bind:key="item.school_id"
     >
-      <div class="px-6 py-4 rounded-lg">
-        <div class="pl-0">
-          <img
-            src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-145774,msid-86702803/coggndlf.jpg"
-            class="h-64 w-full rounded-lg icons"
-          />
+      <NuxtLink :to="`http://localhost:3000/${item.perma_link}`">
+        <div class="px-6 py-4 rounded-lg">
+          <div class="pl-0">
+            <img
+              src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-145774,msid-86702803/coggndlf.jpg"
+              class="h-64 w-full rounded-lg icons"
+            />
+          </div>
+          <div class="text-black grid py-4">
+            <strong>{{ item.school_name }}</strong>
+            <ul>
+              <li class="rounded-t relative -mb-px block border border-grey">
+                <div>Type:{{ item.school_gender }}</div>
+              </li>
+              <li class="relative -mb-px block border border-grey">
+                <div>Board:{{ item.school_board }}</div>
+              </li>
+              <li class="relative -mb-px block border border-grey">
+                <div>City: {{ item.school_city }}</div>
+              </li>
+              <li class="relative -mb-px block border border-grey">
+                <div>Hostel: {{ item.school_hostel }}</div>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="text-black grid py-4">
-          <strong>{{ item.school_name }}</strong>
-          <ul>
-            <li class="rounded-t relative -mb-px block border border-grey">
-              <div>Type:{{ item.school_gender }}</div>
-            </li>
-            <li class="relative -mb-px block border border-grey">
-              <div>Board:{{ item.school_board }}</div>
-            </li>
-            <li class="relative -mb-px block border border-grey">
-              <div>City: {{ item.school_city }}</div>
-            </li>
-            <li class="relative -mb-px block border border-grey">
-              <div>Hostel: {{ item.school_hostel }}</div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
   <!-- End Result -->
@@ -385,6 +387,10 @@
 </template>
 
 <script setup lang="ts">
+// useHead({
+//   title: "Uniform Application",
+//   meta: [{ name: "description", content: "" }],
+// });
 const jsonData = ref();
 const response = await useFetch("/api/fetchAll", {});
 jsonData.value = response.data.value;

@@ -2,18 +2,11 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   try {
-    const review = JSON.parse((event.node.req as any).body).toString();
+    // const review = JSON.parse((event.node.req as any).body);
 
     const allReviews = await prisma.reviews.findMany({
       where: {
-        AND: [
-          {
-            school_id: { gt: review.sch_id },
-          },
-          {
-            approve: "Y",
-          },
-        ],
+        approve: "Y",
       },
 
       orderBy: {

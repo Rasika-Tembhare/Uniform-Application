@@ -58,7 +58,7 @@
                     </td>
                     <td class="p-2 border-b border-b-gray-200 text-info">
                       <div
-                        v-for="board in boards"
+                        v-for="(board, index) in boards"
                         v-if="!(typeof boards === 'string')"
                       >
                         <a
@@ -67,12 +67,22 @@
                             board.trim() === 'IGCSE'
                           "
                           href="https://uniformapp.in/blog/full-form-of-igcse/"
-                          >{{ board.trim() }}&nbsp;</a
+                          >{{ board.trim()
+                          }}{{ index < boards.length - 1 ? ", " : "" }}&nbsp;</a
+                        >
+                        <a
+                          v-else-if="
+                            board.trim() == `State Board` ||
+                            board.trim() === 'Pre-School'
+                          "
+                          >{{ board.trim()
+                          }}{{ index < boards.length - 1 ? ", " : "" }}&nbsp;</a
                         >
                         <a
                           v-else
                           :href="`https://uniformapp.in/blog/${board.trim()}-full-form/`"
-                          >{{ board.trim() }}&nbsp;</a
+                          >{{ board.trim()
+                          }}{{ index < boards.length - 1 ? ", " : "" }}&nbsp;</a
                         >
                       </div>
                       <div v-else>
@@ -207,17 +217,7 @@
                     </td>
                   </tr>
                 </tbody>
-                <h3
-                  class="flex flex-row font-heading text-primary text-lg font-medium py-2"
-                  v-if="
-                    school?.principal_name != '' ||
-                    school?.principal_degree != '' ||
-                    school?.principal_exp_t != '' ||
-                    school?.principal_exp_a != ''
-                  "
-                >
-                  Principal's Details:
-                </h3>
+
                 <tbody
                   class="bg-secondary"
                   v-if="
@@ -227,6 +227,16 @@
                     school?.principal_exp_a != ''
                   "
                 >
+                  <tr>
+                    <td class="border-b border-b-gray-200">
+                      <h3
+                        class="flex flex-row font-heading text-primary text-lg font-medium py-2"
+                      >
+                        <strong> Principal's Details:</strong>
+                      </h3>
+                    </td>
+                    <td class="p-2 border-b border-b-gray-200"></td>
+                  </tr>
                   <!-- row1  -->
                   <tr v-if="school?.principal_name != ''">
                     <td class="w-p-2 border-b border-b-gray-200">

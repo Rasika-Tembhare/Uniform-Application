@@ -225,7 +225,7 @@
                         v-if="school?.day_fees !== 'None'"
                         v-html="school?.day_fees"
                       ></td>
-                      <td class="py-2 md:text-center pl-2">One TIme</td>
+                      <td class="py-2 md:text-center pl-2">One Time</td>
                     </tr>
                     <tr class="bg-white border-b hover:bg-red-500">
                       <td class="py-2 md:text-center">Residential Fees</td>

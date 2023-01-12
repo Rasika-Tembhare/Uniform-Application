@@ -211,7 +211,7 @@
             <li class="py-1"><a href="">Contact Us</a></li>
             <li class="py-1"><a href="">About Us</a></li>
             <li class="py-1">
-              <NuxtLink to="/cgpa">CGPA Converter</NuxtLink>
+              <NuxtLink to="/cgpaConvertor">CGPA Converter</NuxtLink>
             </li>
             <li class="text-black py-14">
               Copyright : Uniform Ventures Pvt. Ltd.

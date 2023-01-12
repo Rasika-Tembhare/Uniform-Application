@@ -53,15 +53,17 @@
                   <table
                     class="rounded-2xl md:rounded-2xl m-5 w-full mx-auto bg-white text-gray-800 shadow-md"
                   >
-                    <tr class="text-left">
-                      <td class="px-4 py-3">
-                        <p
-                          v-if="school?.school_desc !== ''"
-                          v-html="school?.school_desc"
-                          class="w-full justify-items-center leading-normal"
-                        ></p>
-                      </td>
-                    </tr>
+                    <tbody>
+                      <tr class="text-left">
+                        <td class="px-4 py-3">
+                          <div
+                            v-if="school?.school_desc !== ''"
+                            v-html="school?.school_desc"
+                            class="w-full justify-items-center leading-normal"
+                          ></div>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
                 </div>
               </div>

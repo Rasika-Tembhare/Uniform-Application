@@ -1,9 +1,15 @@
 <template>
   <div>
     <!-- Put this part before </body> tag -->
-    <div class="modal" id="my-modal-3">
+    <input type="checkbox" id="my-modal-2" class="modal-toggle" />
+
+    <div class="modal">
       <div class="modal-box">
-        <a href="#" class="btn btn-sm btn-circle absolute right-2 top-2">✕</a>
+        <label
+          for="my-modal-2"
+          class="btn btn-sm btn-circle absolute right-2 top-2"
+          >✕</label
+        >
         <h3 class="text-center font-bold text-lg md:text-xl pb-2 md:pb-4">
           How is {{ school?.school_name }} , {{ school?.school_city }}
         </h3>
@@ -90,7 +96,7 @@
 
               <div class="modal-action">
                 <button
-                  @submit.prevent="saveReview"
+                  @submit="saveReview"
                   type="submit"
                   class="btn btn-accent btn-md md:w-full w-64 max-w-xs text-center text-white hover:bg-green-dark my-1"
                 >

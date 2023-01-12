@@ -6,12 +6,22 @@ const prisma = new PrismaClient();
 //     return d
 // });
 export default defineEventHandler(async (event) => {
-  const slug = event.node.req.body.toString();
-  // console.log('xyz', slug)
-  const updateUser = await prisma.schools.findFirst({
-    where: {
-      perma_link: slug,
-    },
-  });
-  return updateUser;
+  try {
+    const slug = (event.node.req as any).body;
+    // console.log('xyz', slug)
+    const updateUser = await prisma.schools.findFirst({
+      where: {
+        perma_link: slug,
+      },
+    });
+    return updateUser;
+  } catch (error) {
+    console.error(error);
+    await prisma.$disconnect();
+    process.exit(1);
+  } finally {
+    async () => {
+      await prisma.$disconnect();
+    };
+  }
 });

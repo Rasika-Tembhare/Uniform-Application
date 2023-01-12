@@ -115,7 +115,7 @@
     <div class="flex justify-center">
       <button
         v-if="ShowResult"
-        class="btn btn-accent w-64 md:w-64 max-w-xs mt-5 mb-2 text-base text-secondary"
+        class="btn btn-accent btn-outline w-64 md:w-64 max-w-xs mt-5 mb-2 text-base text-secondary"
         @click="click"
       >
         Clear</button
@@ -131,7 +131,9 @@
       <!-- head -->
       <thead>
         <tr>
-          <th class="text-center">Your CGPA as per Marks: {{ cgpa }}</th>
+          <th class="text-center text-lg pb-2">
+            Your CGPA as per Marks: {{ cgpa }}
+          </th>
         </tr>
       </thead>
     </table>
@@ -260,7 +262,7 @@
   <div class="flex justify-center">
     <button
       v-if="HideResult"
-      class="btn btn-accent w-64 md:w-64 max-w-xs mt-5 mb-2 text-base text-secondary"
+      class="btn btn-accent btn-outline w-64 md:w-64 max-w-xs mt-5 mb-2 text-base text-secondary"
       @click="onclick"
     >
       Clear</button
@@ -304,7 +306,7 @@
         @change="calPer"
         type="number"
         placeholder="Enter Percentage (>0 AND <100)"
-        class="w-64 md:w-64 input-bordered bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        class="w-64 md:w-64 input-bordered bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         min="1"
         max="100"
         required

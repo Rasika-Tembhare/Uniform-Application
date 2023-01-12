@@ -94,12 +94,15 @@
                               </div>
 
                               <div
-                                class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+                                class="text-sm font-medium text-gray-500 dark:text-gray-400"
                               >
-                                <span class="px-1">{{ item?.rating }}</span>
-                                <span class="px-1">{{
-                                  normalizeDate(item?.date)
-                                }}</span>
+                                <div class="px-1">
+                                  <span> {{ item?.rating }}</span>
+
+                                  <span class="px-1 pl-4">{{
+                                    normalizeDate(item?.date)
+                                  }}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -145,16 +148,13 @@
       </div>
     </div>
   </section>
-  <!-- <div v-for="rate in fetchRating" :key="rate.sch_id">
-    <p>{{ rate.rating }}</p>
-  </div> -->
 </template>
 
 <script setup lang="ts">
 import { isTemplateElement } from "@babel/types";
-import { useSchoolStore } from "~~/stores/school";
-const schoolStore = useSchoolStore();
-const school = schoolStore.jsonData;
+// import { useSchoolStore } from "~~/stores/school";
+// const schoolStore = useSchoolStore();
+// const school = schoolStore.jsonData;
 
 // code for collapse open and closed
 const isHidden = ref(true);
@@ -170,19 +170,6 @@ function toggle() {
   }
 }
 
-const sch_id = school?.school_id;
-console.log(sch_id);
-
-const review = await useFetch("/api/fetchReview", {
-  method: "POST",
-  body: {
-    school_id: sch_id,
-  },
-});
-// stored reviews data into JsonData
-const JsonData = ref();
-JsonData.value = review.data.value;
-// console.log(JsonData.value[0].rating);
 // for date normalization
 function normalizeDate(_date: Date) {
   const dateString = _date.toString();
@@ -191,8 +178,20 @@ function normalizeDate(_date: Date) {
   // Parse the date using the Date object and the ISO-8601 format
   const date = new Date(datePortion);
   // Use the toLocaleDateString method to format the date as a local date
-  return date.toLocaleDateString();
+  return date.toLocaleDateString("en-US", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 }
+
+const review = await useFetch("/api/fetchReview", {
+  method: "POST",
+});
+// stored reviews data into JsonData
+const JsonData = ref();
+JsonData.value = review.data.value;
+// console.log(JsonData.value[0].rating);
 
 // for displaying reviews
 
@@ -200,13 +199,6 @@ const reviewVisible = ref(3);
 const fetchedReviews = computed(() => {
   return JsonData.value.slice(0, reviewVisible.value);
 });
-
-
-// const fetchRating = computed(() => {
-//   return JsonData.value.allReviews.filter((item: any) =>
-//     item.rating.toLowerCase().includes(sch_id.value)
-//   );
-// });
 </script>
 
 <style scoped></style>
