@@ -228,7 +228,7 @@
                   "
                 >
                   <tr>
-                    <td class="border-b border-b-gray-200">
+                    <td class="p-2 border-b border-b-gray-200">
                       <h3
                         class="flex flex-row font-heading text-primary text-lg font-medium py-2"
                       >
@@ -239,7 +239,7 @@
                   </tr>
                   <!-- row1  -->
                   <tr v-if="school?.principal_name != ''">
-                    <td class="w-p-2 border-b border-b-gray-200">
+                    <td class="p-2 border-b border-b-gray-200">
                       <strong>Principal's Name</strong>
                     </td>
                     <td class="p-2 border-b border-b-gray-200">

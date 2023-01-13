@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export default defineEventHandler(async (event) => {
   try {
-    const sch_id = (event.node.req as any).body;
+    const sch_id = JSON.parse((event.node.req as any).body);
 
     const allReviews = await prisma.reviews.findMany({
       where: {

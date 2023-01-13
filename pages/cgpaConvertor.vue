@@ -329,17 +329,17 @@ const s3 = ref("");
 const s4 = ref("");
 const s5 = ref("");
 const s6 = ref("");
-const sumNum = ref("");
-const sum = ref("");
+const sumNum = ref();
+const sum = ref();
 const cgpa = ref("");
 const grade = ref("");
-const cgp = ref("");
+const cgp = ref();
 const per = ref("");
 
 const ShowResult = ref(false);
 const HideResult = ref(false);
 
-const calCgpa = (event) => {
+const calCgpa = (event: any) => {
   if (Number(cgp.value) <= 10 && Number(cgp.value) >= 0) {
     cgp.value = event.target.value;
     per.value = (Number(cgp.value) * 9.5).toFixed(1);
@@ -349,7 +349,7 @@ const calCgpa = (event) => {
   }
 };
 
-const calPer = (event) => {
+const calPer = (event: any) => {
   if (Number(per.value) <= 95 && Number(per.value) >= 0) {
     per.value = event.target.value;
     cgp.value = (Number(per.value) / 9.5).toFixed(1);
@@ -377,11 +377,11 @@ function Calculate() {
         num4.value +
         num5.value +
         num6.value;
-      cgpa.value = (sumNum.value / 6).toFixed(1);
+      cgpa.value = (sumNum.value / 6 / 10).toFixed(1);
     } else {
       sumNum.value =
         num1.value + num2.value + num3.value + num4.value + num5.value;
-      cgpa.value = (sumNum.value / 5).toFixed(1);
+      cgpa.value = (sumNum.value / 5 / 10).toFixed(1);
     }
     ShowResult.value = true;
   } else {

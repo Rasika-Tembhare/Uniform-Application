@@ -108,7 +108,7 @@
                         </div>
                       </div>
                       <div
-                        class="text-sm md:text-base flex flex-col justify-items-center"
+                        class="text-sm md:text-base flex flex-col justify-items-center md:overflow-auto"
                       >
                         <span>
                           {{ item?.review }}
@@ -122,7 +122,7 @@
 
             <div
               class="grid grid-cols-1 place-items-center py-1"
-              v-if="countReview >= 3"
+              v-if="countReview > 3"
             >
               <button
                 class="btn text-primary hover:text-secondary text-base"

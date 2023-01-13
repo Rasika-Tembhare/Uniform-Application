@@ -44,6 +44,9 @@
             </svg>
           </div>
         </div>
+
+        <!-- search list  -->
+
         <div v-if="fetchEntries().length" class="z-40">
           <ul
             v-show="showDiv"
@@ -56,7 +59,7 @@
               <div class="flex flex-cols-2 gap-2 hover:bg-gray-300">
                 <div>
                   <img
-                    src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-145774,msid-86702803/coggndlf.jpg"
+                    :src="`https://uniformapp-images.s3.ap-south-1.amazonaws.com/school_images/${item.school_picture}`"
                     class="h-12 w-12 icons"
                   />
                 </div>
@@ -81,6 +84,8 @@
       </div>
     </div>
   </div>
+
+  <!-- side bar -->
 
   <div
     class="flex flex-col gap-8 md:py-24 py-12 m-auto md:flex-row md:pl-36"
@@ -327,6 +332,7 @@
       </a>
     </div> -->
 
+    <!-- default cities show  -->
     <div
       class="rounded-xl justify-center py-8 md:py-0 place-items-center md:w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4"
       @click="showDiv = false"
@@ -340,7 +346,7 @@
           <div class="px-6 py-4 rounded-lg">
             <div class="pl-0">
               <img
-                src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-145774,msid-86702803/coggndlf.jpg"
+                :src="`https://uniformapp-images.s3.ap-south-1.amazonaws.com/school_images/${item.school_picture}`"
                 class="h-40 w-80 md:h-48 md:w-96 rounded-lg icons"
               />
             </div>
@@ -362,7 +368,6 @@
                   class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400"
                 >
                   4.8
-                  <!-- <input :value="setIds(item.school_id)" /> -->
                 </p>
               </div>
               <div
@@ -512,7 +517,21 @@ function fetchEntries() {
       item.school_board.includes(board.value.other)
   );
 }
-const allRatings = ref();
+
+// console.log(fetchedRatings.data.value);
+
+// const allRatings = ref();
+// function takeIds(id: any) {
+//   allRatings.value = id;
+//   console.log(allRatings.value);
+//   const rate = ref([]);
+
+//   rate.value = fetchedRatings.data.value?._avg.ratings;
+
+//   }
+// }
+
+// console.log(fetchedRatings);
 // async function setIds(id: string) {
 //   const fetchedRatings = await useFetch("/api/fetchAllRatings", {
 //     method: "POST",
@@ -522,15 +541,28 @@ const allRatings = ref();
 //   allRatings.value = fetchedRatings.data.value?._avg.rating?.toFixed(1);
 //   console.log(allRatings.value);
 // }
+// const rate = ref();
 // for (let i = 0; i < jsonData.value.allUsers.length; i++) {
 //   const allRate = jsonData.value;
 //   // console.log("id:", allRate.allUsers[i]?.school_id);
 //   const allIds = allRate.allUsers[i]?.school_id;
 //   console.log(allIds);
-//   const fetchedRatings = await useFetch("/api/fetchAllRatings", {
-//     method: "POST",
-//     body: allIds,
+
+//   const fetchedRatings = await useFetch("/api/fetchAvgRating", {
+//     body: JSON.stringify(allIds),
 //   });
+//   rate.value = fetchedRatings.data.value?._avg.rating?.toFixed(1);
+//   console.log(rate.value);
+// }
+// const ids = jsonData.value.allUsers.map((i: any) => i.school_id);
+// const fetchedRatings = await useFetch("/api/fetchAvgRating", {
+//   body: JSON.stringify(ids),
+// });
+// rate.value = fetchedRatings.data.value?._avg.rating?.toFixed(1);
+// console.log(rate.value);
+// const Ratings = await useFetch("/api/fetchAvgRating");
+// rate.value = fetchedRatings.data.value?._avg.rating;
+// console.log(rate.value);
 
 //   allRatings.value = fetchedRatings.data.value?._avg.rating?.toFixed(1);
 //   console.log(allRatings.value);
