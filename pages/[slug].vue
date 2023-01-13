@@ -6,15 +6,15 @@
   <div class="p-5 m-5 md:m-8 md:p-8">
     <SchoolDetails />
     <SchoolInformation />
-    <FeeStructure />
-    <Admission />
-    <Facilities />
-    <Description />
-    <Location />
-    <ContactDetails />
-    <Faq />
-    <Review />
-    <Explore />
+    <LazyFeeStructure />
+    <LazyAdmission />
+    <LazyFacilities />
+    <LazyDescription />
+    <LazyLocation />
+    <LazyContactDetails />
+    <LazyFaq />
+    <LazyReview />
+    <LazyExplore />
   </div>
 </template>
 
