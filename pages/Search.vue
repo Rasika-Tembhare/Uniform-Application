@@ -484,13 +484,13 @@
   <EnquiryModal />
 </template>
 <script setup lang="ts">
-const jsonData = ref();
+// const jsonData = ref();
 const page = ref(0);
 const postData = ref<any[]>([]);
 
-const response = await useFetch("/api/fetchAll", {});
+// const response = await useFetch("/api/fetchAll", {});
 // console.log(response.data.value);
-jsonData.value = response.data.value;
+// jsonData.value = response.data.value;
 
 const showDiv = ref(false);
 const check = ref({
@@ -524,6 +524,24 @@ function clearInput() {
   check.value.school = "";
 }
 
+// onMounted(loadMoreSchools);
+async function loadMoreSchools() {
+  // page.value++;
+  // const last_id = jsonData.value.pageOnePosts.slice(-1)[0].school_id;
+  // console.log(last_id);
+  console.log(page.value);
+  const result = await useFetch("/api/fetchData", {
+    method: "POST",
+    body: { page: page.value },
+  });
+
+  console.log(result);
+  const data = result.data.value != null ? result.data.value.post : [];
+  postData.value.push(...data);
+  page.value += 1;
+}
+
+await loadMoreSchools();
 function fetchEntries() {
   return postData.value.filter(
     (item: any) =>
@@ -545,33 +563,6 @@ function fetchEntries() {
       item.school_board.includes(board.value.other)
   );
 }
-// onMounted(loadMoreSchools);
-async function loadMoreSchools() {
-  // page.value++;
-  // const last_id = jsonData.value.pageOnePosts.slice(-1)[0].school_id;
-  // console.log(last_id);
-  console.log(page.value);
-  const result = await useFetch("/api/fetchData", {
-    method: "POST",
-    body: { page: page.value },
-  });
-
-  console.log(result);
-  const data = result.data.value != null ? result.data.value.post : [];
-  postData.value.push(...data);
-  page.value += 1;
-  // const result = await this.loadData(page);
-
-  // jsonData.value.pageOnePosts.append(moreSchool.value?.otherSchool);
-}
-
-await loadMoreSchools();
-// const getSchools = async () => {
-//   const { data: moreSchool } = await useFetch("/api/searchManySchool", {
-//   method: "POST",
-//   body: last_id,
-// });
-// };
 
 // const cardVisible = ref(50);
 
