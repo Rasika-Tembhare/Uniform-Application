@@ -123,31 +123,32 @@ const email = ref("");
 const selectRate = ref("");
 const review = ref("");
 
-async function saveReview() {
+function saveReview() {
   console.log(name.value);
   console.log(contact.value);
   console.log(email.value);
 
   console.log(selectRate.value);
   console.log(review.value);
-  const writeReview = await useFetch("http://localhost:3000/api/writeReview", {
-    method: "POST",
-    body: {
-      name: name.value,
-      contact: contact.value,
-      email: email.value,
-      review: review.value,
-      rating: selectRate.value,
-    },
-  });
 }
-const handleSubmit = async () => {
-  try {
-    saveReview();
-  } catch (error) {
-    console.log(error);
-  }
-};
+//   const writeReview = await useFetch("http://localhost:3000/api/writeReview", {
+//     method: "POST",
+//     body: {
+//       name: name.value,
+//       contact: contact.value,
+//       email: email.value,
+//       review: review.value,
+//       rating: selectRate.value,
+//     },
+//   });
+// }
+// const handleSubmit = async () => {
+//   try {
+//     saveReview();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 // const { data: writeReview } = await useFetch("/api/writeReview", {
 //   method: "POST",
 //   body: {

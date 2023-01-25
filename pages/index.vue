@@ -229,8 +229,9 @@
         <div class="px-6 py-4 rounded-lg">
           <div class="pl-0">
             <img
-              src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-145774,msid-86702803/coggndlf.jpg"
+              :src="`https://uniformapp-images.s3.ap-south-1.amazonaws.com/school_images/${item.school_picture}`"
               class="h-64 w-full rounded-lg icons"
+              alt="school picture"
             />
           </div>
           <div class="text-black grid py-4">
@@ -364,8 +365,9 @@
         <div class="px-6 py-0 rounded-lg">
           <div class="pl-0">
             <img
-              src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-145774,msid-86702803/coggndlf.jpg"
+              :src="`https://uniformapp-images.s3.ap-south-1.amazonaws.com/school_images/${items.school_picture}`"
               class="h-64 w-full rounded-lg icons"
+              alt="school picture"
             />
           </div>
 
@@ -391,6 +393,7 @@
 //   title: "Uniform Application",
 //   meta: [{ name: "description", content: "" }],
 // });
+
 const jsonData = ref();
 const response = await useFetch("/api/fetchAll", {});
 jsonData.value = response.data.value;
@@ -420,7 +423,7 @@ const Type = computed(() => {
 });
 
 function fetchEntries() {
-  return jsonData.value.allUsers.filter(
+  return jsonData.value.pageOnePosts.filter(
     (item: any) =>
       item.school_name
         .toLowerCase()
@@ -442,8 +445,8 @@ function showResult() {
   hideData.value = true;
 }
 // Filter Duplicate fo City
-const ids = jsonData.value.allUsers.map((o) => o.school_city);
-const filtered = jsonData.value.allUsers.filter(
+const ids = jsonData.value.pageOnePosts.map((o) => o.school_city);
+const filtered = jsonData.value.pageOnePosts.filter(
   ({ school_city }, index) => !ids.includes(school_city, index + 1)
 );
 // function SearchCity(){

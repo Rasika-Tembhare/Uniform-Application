@@ -80,7 +80,7 @@
             :class="showMenu ? 'flex' : 'hidden'"
             class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-6 md:mt-0 md:pr-16"
           >
-            <li class="text-black">
+            <li class="text-black font-heading">
               <div class="dropdown">
                 <button
                   tabindex="0"
@@ -90,7 +90,7 @@
                 </button>
               </div>
             </li>
-            <li class="text-black">
+            <li class="text-black font-heading">
               <div class="dropdown">
                 <button
                   tabindex="0"
@@ -100,7 +100,7 @@
                 </button>
               </div>
             </li>
-            <li class="text-black">
+            <li class="text-black font-heading">
               <div class="dropdown">
                 <button
                   tabindex="0"
@@ -110,7 +110,7 @@
                 </button>
               </div>
             </li>
-            <li class="text-black">
+            <li class="text-black font-heading">
               <div class="dropdown">
                 <button
                   tabindex="0"

@@ -4,8 +4,8 @@
     <Meta name="description" :content="school?.alt_name" />
   </Head>
   <div class="p-5 m-5 md:m-8 md:p-8">
-    <SchoolDetails />
-    <SchoolInformation />
+    <LazySchoolDetails />
+    <LazySchoolInformation />
     <LazyFeeStructure />
     <LazyAdmission />
     <LazyFacilities />

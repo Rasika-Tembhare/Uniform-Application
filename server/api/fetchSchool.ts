@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 // });
 export default defineEventHandler(async (event) => {
   try {
-    const slug = (event.node.req as any).body;
+    const slug = await readBody(event);
     // console.log('xyz', slug)
     const updateUser = await prisma.schools.findFirst({
       where: {
