@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
         },
       });
       schools.push(...additionalSchools);
-      console.log(schools.length);
+      // console.log(schools.length);
       if (schools.length === 1) {
         return null;
       }

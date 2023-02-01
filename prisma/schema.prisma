@@ -139,3 +139,12 @@ model reviews {
   rating    Float
   approve   String?  @db.Text
 }
+
+model enquiry {
+  id             Int    @id @default(autoincrement())
+  name           String @db.Text
+  contact        String @db.Text
+  email          String @db.Text
+  school_id      String @db.VarChar(11)
+  class_selected String @db.Text
+}

@@ -5,7 +5,7 @@
     <div class="modal">
       <div class="modal-box relative text-center">
         <!-- Enquiry Form  -->
-        <form action="">
+        <form>
           <input type="hidden" name="school_id" :value="school?.school_id" />
           <label
             for="my-modal-1"
@@ -65,32 +65,31 @@
                 required
               >
                 <option value="">Select Class</option>
-                <option value="1">Pre Nursery</option>
-                <option value="2">Nursery</option>
-                <option value="3">LKG</option>
-                <option value="4">KG</option>
-                <option value="5">UKG</option>
-                <option value="6">Class 1</option>
-                <option value="7">Class 2</option>
-                <option value="8">Class 3</option>
-                <option value="9">Class 4</option>
-                <option value="10">Class 5</option>
-                <option value="11">Class 6</option>
-                <option value="12">Class 7</option>
-                <option value="13">Class 8</option>
-                <option value="14">Class 9</option>
-                <option value="15">Class 10</option>
-                <option value="16">Class 11</option>
-                <option value="17">Class 12</option>
+                <option value="Pre Nursery">Pre Nursery</option>
+                <option value="Nursery">Nursery</option>
+                <option value="LKG">LKG</option>
+                <option value="UKG">UKG</option>
+                <option value="Class 1">Class 1</option>
+                <option value="Class 2">Class 2</option>
+                <option value="Class 3">Class 3</option>
+                <option value="Class 4">Class 4</option>
+                <option value="Class 5">Class 5</option>
+                <option value="Class 6">Class 6</option>
+                <option value="Class 7">Class 7</option>
+                <option value="Class 8">Class 8</option>
+                <option value="Class 9">Class 9</option>
+                <option value="Class 10">Class 10</option>
+                <option value="Class 11">Class 11</option>
+                <option value="Class 12">Class 12</option>
               </select>
 
               <div class="modal-action">
                 <button
-                  @submit.prevent="saveDetail"
+                  @click="saveDetail"
                   type="submit"
                   class="btn btn-accent btn-md w-full max-w-xs text-center text-white hover:bg-green-dark my-1"
                 >
-                  Save
+                  <label for="my-modal-1"></label> Save
                 </button>
               </div>
 
@@ -138,11 +137,22 @@ const mob = ref("");
 const email = ref("");
 const selectClass = ref("");
 
-function saveDetail() {
-  console.log(fname.value);
-  console.log(mob.value);
-  console.log(email.value);
-  console.log(selectClass.value);
+async function saveDetail() {
+  // console.log(fname.value);
+  // console.log(mob.value);
+  // console.log(email.value);
+  // console.log(selectClass.value);
+  const { data: res } = await useFetch("/api/writeEnquiry", {
+    method: "POST",
+    body: {
+      fname: fname,
+      mob: mob,
+      email: email,
+      selectClass: selectClass,
+      school_id: school.school_id,
+    },
+  });
+  // console.log(res.value);
 }
 </script>
 

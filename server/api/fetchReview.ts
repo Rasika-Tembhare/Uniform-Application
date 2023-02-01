@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
       // },
     });
 
-    console.dir(allReviews, { depth: null });
+    // console.dir(allReviews, { depth: null });
     return allReviews;
   } catch (error) {
     console.error(error);

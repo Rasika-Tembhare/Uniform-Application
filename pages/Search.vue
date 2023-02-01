@@ -48,7 +48,7 @@
 
         <!-- search list  -->
 
-        <div v-if="fetchEntries().length" class="z-40">
+        <div v-if="fetchEntries()?.length" class="z-40">
           <ul
             v-show="showDiv"
             v-for="item in fetchEntries()"
@@ -84,8 +84,11 @@
         </div>
         <div v-else class="z-40">
           <ul class="font-bold uppercase text-gray-700 w-62 bg-white-800">
-            <li class="border-b cursor-pointer text-gray-700 bg-white">
-              No Product Found for {{ check.school }}
+            <li
+              v-if="check.school != ''"
+              class="border-b cursor-pointer text-gray-700 bg-white"
+            >
+              No School Found for {{ check.school }}
             </li>
           </ul>
         </div>
@@ -126,11 +129,14 @@
         <div class="collapse-content bg-white w-72">
           <div class="py-2">
             <input
+              @input="getCity"
               type="text"
               placeholder="Search by city"
               v-model="check.city"
               class="input input-bordered input-error w-full max-w-xs"
             />
+
+            <!-- <button @click="getCity">Go</button> -->
           </div>
         </div>
       </div>
@@ -437,30 +443,34 @@
               </div>
             </div>
           </div>
+          <div
+            class="py-2 grid grid-cols-2 place-items-start md:place-items-center gap-6 md:gap-20"
+          >
+            <button>
+              <label
+                for="my-modal-1"
+                class="btn btn-accent py-2 inline-block w-32 md:w-32 max-w-xs text-base text-secondary cursor-pointer"
+              >
+                Apply Now
+              </label>
+            </button>
+
+            <button>
+              <label
+                for="my-modal-1"
+                class="btn btn-white py-2 inline-block w-36 md:w-36 max-w-xs text-base text-primary hover:text-white cursor-pointer"
+              >
+                Send Enquiry
+              </label>
+            </button>
+          </div>
         </NuxtLink>
-        <div
-          class="py-2 grid grid-cols-2 place-items-start md:place-items-center gap-6 md:gap-20"
-        >
-          <div class="">
-            <label
-              for="my-modal-1"
-              class="py-2 inline-block btn btn-accent w-32 md:w-32 max-w-xs text-base text-secondary cursor-pointer"
-            >
-              Apply Now
-            </label>
-          </div>
-          <div>
-            <label
-              for="my-modal-1"
-              class="py-2 inline-block btn btn-white w-36 md:w-36 max-w-xs text-base text-primary hover:text-white cursor-pointer"
-            >
-              Send Enquiry
-            </label>
-          </div>
-        </div>
+
+        <EnquiryModal />
       </div>
     </div>
   </div>
+
   <!-- view more button  -->
   <div
     class="flex md:flex md:relative justify-center pb-4 md:pb-5 md:pl-96 md:ml-36"
@@ -481,18 +491,13 @@
       </svg>
     </button>
   </div>
-  <EnquiryModal />
 </template>
 <script setup lang="ts">
-// const jsonData = ref();
 const page = ref(0);
 const postData = ref<any[]>([]);
 
-// const response = await useFetch("/api/fetchAll", {});
-// console.log(response.data.value);
-// jsonData.value = response.data.value;
-
 const showDiv = ref(false);
+
 const check = ref({
   school: "",
   city: "",
@@ -515,6 +520,7 @@ const hostel = ref({
   no: [],
   both: [],
 });
+// check.value.city = "faridabad";
 
 function setState(item: any) {
   check.value.school = item.school_name;
@@ -524,24 +530,26 @@ function clearInput() {
   check.value.school = "";
 }
 
+// pagination function
+
 // onMounted(loadMoreSchools);
 async function loadMoreSchools() {
-  // page.value++;
-  // const last_id = jsonData.value.pageOnePosts.slice(-1)[0].school_id;
-  // console.log(last_id);
-  console.log(page.value);
+  // console.log(page.value);
   const result = await useFetch("/api/fetchData", {
     method: "POST",
     body: { page: page.value },
   });
 
-  console.log(result);
+  // console.log(result);
   const data = result.data.value != null ? result.data.value.post : [];
   postData.value.push(...data);
   page.value += 1;
 }
 
 await loadMoreSchools();
+
+// function for filtering school
+
 function fetchEntries() {
   return postData.value.filter(
     (item: any) =>
@@ -564,32 +572,28 @@ function fetchEntries() {
   );
 }
 
-// const cardVisible = ref(50);
+// console.log(check.value);
 
-// const showSchools = computed(() => {
-//   // jsonData.value.pageOnePosts.push(moreSchool.value?.otherSchool);
-//   return jsonData.value.pageOnePosts
-//     .filter(
-//       (item: any) =>
-//         item.school_name
-//           .toLowerCase()
-//           .includes(check.value.school.toLowerCase()) &&
-//         item.school_gender.includes(type.value.male) &&
-//         item.school_gender.includes(type.value.female) &&
-//         item.school_gender.includes(type.value.both) &&
-//         item.school_city
-//           .toLowerCase()
-//           .includes(check.value.city.toLowerCase()) &&
-//         item.school_hostel.includes(hostel.value.yes) &&
-//         item.school_hostel.includes(hostel.value.no) &&
-//         item.school_hostel.includes(hostel.value.both) &&
-//         item.school_board.includes(board.value.cbse) &&
-//         item.school_board.includes(board.value.icse) &&
-//         item.school_board.includes(board.value.ib) &&
-//         item.school_board.includes(board.value.igcse) &&
-//         item.school_board.includes(board.value.state) &&
-//         item.school_board.includes(board.value.other)
-//     )
-//     .slice(0, cardVisible.value);
-// });
+async function getCity() {
+  const { data: city } = await useFetch("/api/fetchMoreCity", {
+    method: "POST",
+    body: {
+      city: check.value.city.toLowerCase(),
+    },
+  });
+  // console.log(check.value.city);
+  // console.log(city.value?.moreCity);
+  const data = city.value != null ? city.value?.moreCity : [];
+
+  postData.value.push(...data);
+}
+// if (check.value.city != "") {
+//   getCity();
+// }
+// await getCity();
+
+// page.value++;
+// const last_id = jsonData.value.pageOnePosts.slice(-1)[0].school_id;
+// console.log(last_id);
+// const cardVisible = ref(50);
 </script>

@@ -56,7 +56,7 @@
           </div>
           <div class="collapse-content" v-if="isHidden">
             <div
-              class="overflow-x-auto relative border border-base-200 rounded-2xl md:rounded-2xl shadow-md"
+              class="overflow-x-auto relative border border-base-200 rounded-2xl md:rounded-2xl"
             >
               <table class="table-auto w-full md:w-full">
                 <tbody class="bg-secondary">

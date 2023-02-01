@@ -2,7 +2,7 @@
   <div>
     <div class="grid md:gap-96 grid-cols-1 md:justify-between">
       <div class="text-center md:pl-32 py-4">
-        <p>
+        <!-- <p>
           <a
             href="mailto: mail@uniformapp.in"
             class="inline-block hover:bg-blue"
@@ -12,9 +12,10 @@
             />
             mail@uniformapp.in</a
           >
-        </p>
+        </p> -->
       </div>
-      <div class="text-center md:pr-16 py-2">
+      <!-- icons  -->
+      <!-- <div class="text-center md:pr-16 py-2">
         <a
           href="https://www.facebook.com/sharer/sharer.php?&amp;src=sdkpreparse"
           type="button"
@@ -43,26 +44,25 @@
             class="h-4 w-4 inline-block gap-2"
           />
         </a>
-      </div>
+      </div> -->
     </div>
-    <div class="grid-rows-2">
-      <div class="bg-white">
-        <nav
-          class="container px-4 py-2 mx-auto md:flex md:justify-between md:items-center"
-        >
+    <div class="flex flex-col items-center md:items-start">
+      <div class="">
+        <nav class="container px-4 py-2 mx-auto md:flex">
           <div class="flex items-center justify-between">
-            <NuxtLink
+            <!-- <NuxtLink
               to="/"
               class="text-xl font-bold text-black md:text-2xl hover:text-red-600"
             >
-            </NuxtLink>
+            </NuxtLink> -->
             <div class="md:pl-20">
               <img
                 src="https://uniformapp-images.s3.ap-south-1.amazonaws.com/logo_black.png"
-                class="h-10 w-44 md:h-9 md:w-48"
+                class="h-11 w-44 md:h-12 md:w-48"
               />
             </div>
-            <div @click="toggleNav" class="flex md:hidden">
+
+            <!-- <div @click="toggleNav" class="flex md:hidden">
               <button
                 type="button"
                 class="text-black hover:text-black focus:outline-none focus:text-black"
@@ -74,9 +74,9 @@
                   ></path>
                 </svg>
               </button>
-            </div>
+            </div> -->
           </div>
-          <ul
+          <!-- <ul
             :class="showMenu ? 'flex' : 'hidden'"
             class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-6 md:mt-0 md:pr-16"
           >
@@ -120,7 +120,7 @@
                 </button>
               </div>
             </li>
-          </ul>
+          </ul> -->
         </nav>
       </div>
     </div>
@@ -130,8 +130,9 @@
 
     <!-- footer starts here  -->
     <footer class="bg-white shadow-inner text-black">
-      <div class="grid grid-cols-3 md:gap-48 gap-16">
-        <div class="md:pl-32 md:py-4 py-0 text-black">
+      <div class="grid grid-cols-2 md:justify-between md:m-6 md:px-24">
+        <!-- News Letter  -->
+        <!-- <div class="md:pl-32 md:py-4 py-0 text-black">
           <form action="">
             <div>
               <div>
@@ -164,15 +165,16 @@
               </div>
             </div>
           </form>
-          <div class="md:py-32 grid place-items-center py-8">
+        </div> -->
+        <!-- logo  -->
+        <div class="">
+          <div class="grid place-items-center py-8 md:py-4">
             <img
               src="https://uniformapp-images.s3.ap-south-1.amazonaws.com/logo_black.png"
-              class="h-10 w-44 md:h-9 md:w-48"
+              class="h-11 w-44 md:h-12 md:w-48"
             />
           </div>
-        </div>
-        <div class="md:py-4 text-black">
-          <h5
+          <!-- <h5
             class="uppercase font-bold mb-2.5 text-black md:text-left text-center"
           >
             Important Links
@@ -196,16 +198,25 @@
             <li class="py-1">
               <a href="/">Edunify India</a>
             </li>
-          </ul>
+          </ul> -->
         </div>
+        <!-- copyright  -->
         <div class="py-4">
-          <h5
+          <div class="grid place-items-center py-8 md:py-4">
+            <span class="my-2 py-1 md:py-2">
+              Copyright :Rinnegan Industries Private Limited.
+            </span>
+          </div>
+
+          <!-- <h5
             class="uppercase font-bold mb-2.5 text-black md:text-left text-center"
           >
             Support
-          </h5>
-          <ul class="md:text-left text-center text-black py-4">
-            <li class="py-1"><a href="">Privacy Policy</a></li>
+          </h5> -->
+          <!-- <ul class="md:text-left text-center text-black py-8">
+            <li class="py-1">
+              <a href="">Privacy Policy</a>
+            </li>
             <li class="py-1"><a href="">Terms and Conditions</a></li>
             <li class="py-1"><a href="">Refund Policy</a></li>
             <li class="py-1"><a href="">Contact Us</a></li>
@@ -213,10 +224,10 @@
             <li class="py-1">
               <NuxtLink to="/cgpaConvertor">CGPA Converter</NuxtLink>
             </li>
-            <li class="text-black py-14">
+            <li class="text-primary py-14">
               Copyright : Uniform Ventures Pvt. Ltd.
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </footer>

@@ -18,10 +18,10 @@ export default defineNuxtConfig({
   // imports: {
   //   dirs: ["stores"],
   // },
-  app: {
-    head: {
-      title: "Uniform Application",
-      meta: [{ name: "description", content: "" }],
-    },
-  },
+  // app: {
+  //   head: {
+  //     title: "enrollto",
+  //     meta: [{ name: "description", content: "" }],
+  //   },
+  // },
 });

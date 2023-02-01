@@ -1,5 +1,11 @@
 <template>
-  <section>
+  <section
+    v-if="
+      school?.school_email != '' ||
+      school?.school_contact != '' ||
+      school?.school_web != ''
+    "
+  >
     <div
       class="md:container md:mx-auto items-center justify-center bg-base-100 py-5"
     >
@@ -66,22 +72,28 @@
                 </div>
               </div> -->
               <div
-                class="bg-secondary order-2 md:order-1 py-2 md:w-full max-w-xl p-6 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+                class="bg-white py-2 md:w-full max-w-xl p-6 border border-gray-200 rounded-lg"
               >
                 <div class="text-lg text-center">School's Contact</div>
                 <div class="flex gap-2 py-2">
-                  <div class="text-lg text-center">
+                  <div
+                    class="text-lg text-center"
+                    v-if="school?.school_email != ''"
+                  >
                     <img
                       src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
                       alt="call"
                       class="w-8 h-8"
                     />
                   </div>
-                  <div class="py-1 text-center">
+                  <div class="py-1 text-center overflow-auto">
                     <span class="">{{ school?.school_email }}</span>
                   </div>
                 </div>
-                <div class="flex gap-2 py-2" v-if="school?.school_contact != 0">
+                <div
+                  class="flex gap-2 py-2"
+                  v-if="school?.school_contact != ''"
+                >
                   <div class="text-lg text-center">
                     <img
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp89_wwPzd-JzYOskOD00TdRze5T9oNlgFOG6-tXIksA&s"
@@ -94,7 +106,10 @@
                   </div>
                 </div>
                 <div class="flex gap-2 py-2">
-                  <div class="text-lg text-center">
+                  <div
+                    class="text-lg text-center"
+                    v-if="school?.school_web != ''"
+                  >
                     <img
                       src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png"
                       alt="call"
@@ -103,9 +118,7 @@
                   </div>
                   <div class="py-1 md:text-center overflow-x-auto">
                     <span class="hover:text-info">
-                      <a :href="school?.school_web" rel="nofollow">{{
-                        school?.school_web
-                      }}</a></span
+                      <a rel="nofollow">{{ school?.school_web }}</a></span
                     >
                   </div>
                 </div>

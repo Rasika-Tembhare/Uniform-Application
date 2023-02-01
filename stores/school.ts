@@ -6,7 +6,7 @@ export const useSchoolStore = defineStore("counter", () => {
       method: "POST",
       body: slug,
     });
-    console.log(response.data.value);
+    // console.log(response.data.value);
     jsonData.value = response.data.value;
   }
 

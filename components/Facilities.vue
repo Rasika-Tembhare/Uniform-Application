@@ -72,7 +72,7 @@
                   class="w-24 md:w-36 justify-items-center"
                 />
                 <figcaption
-                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:p-5"
+                  class="text-justify md:text-xl justify-items-center text-primary py-4 px-4 md:py-5 md:px-5"
                 >
                   Transport
                 </figcaption>
@@ -88,7 +88,7 @@
                 />
 
                 <figcaption
-                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:p-5"
+                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:py-5 md:px-4"
                 >
                   Music Room
                 </figcaption>
@@ -103,7 +103,7 @@
                   class="w-24 md:w-36 justify-items-center"
                 />
                 <figcaption
-                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:p-5"
+                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:py-5"
                 >
                   Indoor Sports
                 </figcaption>
@@ -121,7 +121,7 @@
                 />
 
                 <figcaption
-                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:p-5"
+                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:py-5"
                 >
                   Outdoor Sports
                 </figcaption>
@@ -135,7 +135,7 @@
                   class="w-24 md:w-36 justify-items-center"
                 />
                 <figcaption
-                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:p-5"
+                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:py-5"
                 >
                   AC Classes
                 </figcaption>
@@ -165,7 +165,7 @@
                 />
 
                 <figcaption
-                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:p-5"
+                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:py-5"
                 >
                   Swimming Pool
                 </figcaption>
@@ -200,7 +200,7 @@
                 />
 
                 <figcaption
-                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:p-5"
+                  class="text-justify md:text-xl justify-items-center text-primary py-4 md:py-5"
                 >
                   Health Checkup
                 </figcaption>

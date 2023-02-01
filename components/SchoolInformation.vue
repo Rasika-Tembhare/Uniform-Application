@@ -47,7 +47,7 @@
           </div>
           <div class="collapse-content" v-if="isHidden">
             <div
-              class="overflow-x-auto relative border border-base-100 rounded-2xl md:rounded-2xl shadow-md"
+              class="overflow-x-auto relative border border-base-100 rounded-2xl md:rounded-2xl"
             >
               <table class="table-auto w-full md:w-full">
                 <tbody class="bg-secondary">
@@ -140,7 +140,8 @@
                       <strong>Average Day Fees</strong>
                     </td>
                     <td class="p-2 border-b border-b-gray-200">
-                      {{ (school?.avg_fees_day * 12).toFixed(1) }} per year
+                      &#x20B9; {{ (school?.avg_fees_day * 12).toFixed(0) }} per
+                      year
                     </td>
                   </tr>
                   <tr
@@ -156,8 +157,10 @@
                       <strong>Average Residential Fees</strong>
                     </td>
                     <td class="p-2 border-b border-b-gray-200">
-                      {{ (school?.avg_fees_residential * 12).toFixed(1) }} per
-                      year
+                      &#x20B9;{{
+                        (school?.avg_fees_residential * 12).toFixed(0)
+                      }}
+                      per year
                     </td>
                   </tr>
                   <tr v-if="school?.alt_name != '' && school?.alt_name != null">

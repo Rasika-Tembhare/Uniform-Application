@@ -63,7 +63,7 @@
                     <!-- Card-1 -->
 
                     <div
-                      class="card-body p-6 border bg-secondary border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+                      class="card-body p-6 border bg-secondary border-gray-200 rounded-lg"
                     >
                       <div class="flex py-2">
                         <div
@@ -188,7 +188,7 @@ function normalizeDate(_date: Date) {
 }
 
 const sch_id = school.school_id;
-console.log(sch_id);
+// console.log(sch_id);
 
 const review = await useFetch("/api/fetchReview", {
   method: "POST",

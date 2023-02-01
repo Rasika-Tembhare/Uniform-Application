@@ -51,16 +51,20 @@
                 <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                   <!-- Table -->
                   <table
-                    class="rounded-2xl md:rounded-2xl m-5 w-full mx-auto bg-white text-gray-800 shadow-md"
+                    class="rounded-2xl md:rounded-2xl m-5 w-full mx-auto bg-white text-gray-800"
                   >
                     <tbody>
                       <tr class="text-left">
                         <td class="px-4 py-3">
                           <div
                             v-if="school?.school_desc !== ''"
-                            v-html="school?.school_desc"
                             class="w-full justify-items-center leading-normal"
-                          ></div>
+                          >
+                            <div
+                              class="title"
+                              v-html="school?.school_desc"
+                            ></div>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -91,4 +95,25 @@ function toggle() {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.title :deep() h3 {
+  font-size: 1.125rem /* 18px */;
+  line-height: 1.75rem /* 28px */;
+  font-weight: 500;
+  color: #000000;
+  font-family: Poppins, sans-serif;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+  .title :deep() h3 {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+    font-weight: 500;
+    color: #000000;
+    font-family: Poppins, sans-serif;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+</style>

@@ -18,11 +18,7 @@
             class="container max-w-sm mx-auto md:flex-1 flex flex-col items-center justify-center px-2"
           >
             <div class="bg-white px-6 rounded shadow-md text-black w-full">
-              <input
-                type="hidden"
-                name="school_id"
-                :value="school?.school_id"
-              />
+              <input type="hidden" name="school_id" :value="school.school_id" />
 
               <label class="label">
                 <span class="label-text text-sm md:text-base"
@@ -96,7 +92,7 @@
 
               <div class="modal-action">
                 <button
-                  @submit="saveReview"
+                  @click="saveReview"
                   type="submit"
                   class="btn btn-accent btn-md md:w-full w-64 max-w-xs text-center text-white hover:bg-green-dark my-1"
                 >
@@ -115,7 +111,7 @@
 import { useSchoolStore } from "~~/stores/school";
 const schoolStore = useSchoolStore();
 const school = schoolStore.jsonData;
-const sch_id = school?.school_id;
+// const sch_id  = school?.school_id;
 
 const name = ref("");
 const contact = ref("");
@@ -123,25 +119,30 @@ const email = ref("");
 const selectRate = ref("");
 const review = ref("");
 
-function saveReview() {
+async function saveReview() {
   console.log(name.value);
   console.log(contact.value);
   console.log(email.value);
 
   console.log(selectRate.value);
   console.log(review.value);
+  const { data: Review } = await useFetch("/api/writeReview", {
+    method: "POST",
+    body: {
+      name: name,
+      school_id: school.school_id,
+      contact: contact,
+      email: email,
+      review: review,
+      rating: selectRate,
+    },
+  });
+  console.log(Review);
 }
-//   const writeReview = await useFetch("http://localhost:3000/api/writeReview", {
-//     method: "POST",
-//     body: {
-//       name: name.value,
-//       contact: contact.value,
-//       email: email.value,
-//       review: review.value,
-//       rating: selectRate.value,
-//     },
-//   });
-// }
+
+// await saveReview();
+
+// const { data: resData } = await useFetch("/api/writeReview");
 // const handleSubmit = async () => {
 //   try {
 //     saveReview();

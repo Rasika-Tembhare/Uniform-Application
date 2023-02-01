@@ -1,10 +1,6 @@
 <template>
   <section
-    v-if="
-      school?.admission_update !== '' ||
-      school?.admission_update_new !== '' ||
-      school?.admission_crit !== ''
-    "
+    v-if="school?.admission_update !== '' || school?.admission_crit !== ''"
   >
     <div
       class="md:container md:mx-auto items-center justify-center bg-base-100 py-5"
@@ -53,7 +49,7 @@
           </div>
           <div class="collapse-content" v-if="isHidden">
             <div
-              class="bg-white py-4 max-w-64 p-6 border border-gray-200 rounded-xl shadow-md dark:bg-gray-800 dark:border-gray-700"
+              class="bg-white py-4 max-w-64 p-6 border border-gray-200 rounded-xl"
             >
               <ul class="list-reset flex flex-col">
                 <li
@@ -95,9 +91,10 @@
                   </div>
                   <div
                     v-if="school?.admission_crit !== ''"
-                    v-html="school?.admission_crit"
-                    class="text-left overflow-x-auto relative table-auto justify-items-center"
-                  ></div>
+                    class="text-left overflow-auto relative table-auto justify-items-center"
+                  >
+                    <div v-html="school?.admission_crit" class="title2"></div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -140,4 +137,9 @@ function toggle() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.title2 :deep() th {
+  background: rgb(229 231 235);
+  color: black;
+}
+</style>

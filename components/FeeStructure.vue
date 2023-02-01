@@ -65,44 +65,24 @@
                     </div>
                     <div
                       class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day == 'None' ||
-                          school?.avg_fees_day == 0) &&
-                        (school?.avg_fees_residential == 'None' ||
-                          school?.avg_fees_residential !== 0)
-                      "
-                      v-html="(school?.avg_fees_day * 12).toFixed(1)"
+                      v-if="school?.avg_fees_day !== null"
+                      v-html="(school?.avg_fees_day * 12).toFixed(0)"
                     ></div>
                     <div
                       class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day == 'None' ||
-                          school?.avg_fees_day == 0) &&
-                        (school?.avg_fees_residential == 'None' ||
-                          school?.avg_fees_residential == 0)
-                      "
-                      v-html="(school?.avg_fees_residential * 12).toFixed(1)"
+                      v-else-if="school?.avg_fees_residential !== null"
+                      v-html="(school?.avg_fees_residential * 12).toFixed(0)"
                     ></div>
                     <div
                       class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day == 'None' ||
-                          school?.avg_fees_day == 0) &&
-                        (school?.avg_fees_residential == 'None' ||
-                          school?.avg_fees_residential !== 0)
+                      v-else="
+                        school?.avg_fees_day == null &&
+                        school?.avg_fees_residential == null
                       "
-                      v-html="(school?.avg_fees_residential * 12).toFixed(1)"
-                    ></div>
-                    <div
-                      class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day !== 'None' ||
-                          school?.avg_fees_day !== 0) &&
-                        (school?.avg_fees_residential !== 'None' ||
-                          school?.avg_fees_residential == 0)
-                      "
-                      v-html="(school?.avg_fees_day * 12).toFixed(1)"
-                    ></div>
+                    >
+                      NA
+                    </div>
+
                     <div class="stat-desc text-sm text-blue-400">
                       What is total cost?
                     </div>
@@ -117,44 +97,24 @@
                     </div>
                     <div
                       class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day == 'None' ||
-                          school?.avg_fees_day == 0) &&
-                        (school?.avg_fees_residential == 'None' ||
-                          school?.avg_fees_residential !== 0)
-                      "
-                      v-html="(school?.avg_fees_day * 1).toFixed(1)"
+                      v-if="school?.avg_fees_day !== null"
+                      v-html="(school?.avg_fees_day * 1).toFixed(0)"
                     ></div>
                     <div
                       class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day == 'None' ||
-                          school?.avg_fees_day == 0) &&
-                        (school?.avg_fees_residential == 'None' ||
-                          school?.avg_fees_residential == 0)
-                      "
-                      v-html="(school?.avg_fees_residential * 1).toFixed(1)"
+                      v-else-if="school?.avg_fees_residential !== null"
+                      v-html="(school?.avg_fees_residential * 1).toFixed(0)"
                     ></div>
                     <div
                       class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day == 'None' ||
-                          school?.avg_fees_day == 0) &&
-                        (school?.avg_fees_residential == 'None' ||
-                          school?.avg_fees_residential !== 0)
+                      v-else="
+                        school?.avg_fees_day == null &&
+                        school?.avg_fees_residential == null
                       "
-                      v-html="(school?.avg_fees_residential * 1).toFixed(1)"
-                    ></div>
-                    <div
-                      class="stat-value text-lg"
-                      v-if="
-                        (school?.avg_fees_day !== 'None' ||
-                          school?.avg_fees_day !== 0) &&
-                        (school?.avg_fees_residential !== 'None' ||
-                          school?.avg_fees_residential == 0)
-                      "
-                      v-html="(school?.avg_fees_day * 1).toFixed(1)"
-                    ></div>
+                    >
+                      NA
+                    </div>
+
                     <div class="stat-desc text-sm text-blue-400">
                       What is monthly cost?
                     </div>
@@ -162,67 +122,42 @@
                 </div>
               </div>
               <!-- Table -->
-              <!-- <table class="w-full table">
-                <tr class="bg-gray-100">
-                  <th class="p-2 text-center">Type</th>
-                  <th class="p-2 text-center">Amount</th>
-                  <th class="p-2 text-center pr-4">Frequency</th>
-                </tr>
-                <tr class="">
-                  <td class="p-2 text-center">Registration Fees</td>
-                  <td class="p-2 text-center">$1000</td>
-                  <td class="p-2 text-center">One Time</td>
-                </tr>
-                <tr>
-                  <td class="p-2 text-center">Registration Fees</td>
-                  <td class="p-2 text-center">$1000</td>
-                  <td class="p-2 text-center">One Time</td>
-                </tr>
-                <tr class="">
-                  <td class="p-2 text-center">Registration Fees</td>
-                  <td class="p-2 text-center">$1000</td>
-                  <td class="p-2 text-center">One Time</td>
-                </tr>
-                <tr>
-                  <td class="p-2 text-center">Registration Fees</td>
-                  <td class="p-2 text-center">$1000</td>
-                  <td class="p-2 text-center">One Time</td>
-                </tr>
-              </table> -->
-              <div class="stats overflow-hidden w-full">
+
+              <div class="stats overflow-x-auto relative w-full">
                 <table
                   class="container rounded-t-lg md:w-full border border-base-100 shadow-md"
                 >
                   <thead class="bg-gray-200">
                     <tr class="hover:shadow-lg hover:border-transparent">
                       <th
-                        class="text-left font-bold text-xl md:text-center text-gray-900 py-4"
+                        class="font-bold text-lg md:text-xl text-center md:text-center text-gray-900 py-4"
                       >
                         Type
                       </th>
                       <th
-                        class="text-left font-bold text-xl md:text-center text-gray-900"
+                        class="font-bold text-lg md:text-xl text-center md:text-center text-gray-900"
                       >
                         Amount
                       </th>
                       <th
-                        class="text-left font-bold text-xl md:text-center text-gray-900 pl-2"
+                        class="font-bold text-lg md:text-xl text-center md:text-center text-gray-900 pl-2"
                       >
                         Frequency
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="bg-white border-b hover:bg-red-500">
+                    <!-- <tr class="bg-white border-b hover:bg-red-500">
                       <td class="py-2 md:text-center">Day Fees</td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.day_fees == 'None'"
-                        v-html="school?.day_fees"
-                      ></td>
+                        v-if="school?.day_fees == null"
+                      >
+                        NA
+                      </td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.day_fees !== 'None'"
+                        v-if="school?.day_fees !== null"
                         v-html="school?.day_fees"
                       ></td>
                       <td class="py-2 md:text-center pl-2">One Time</td>
@@ -231,43 +166,46 @@
                       <td class="py-2 md:text-center">Residential Fees</td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.residential_fees == 'None'"
-                        v-html="school?.residential_fees"
-                      ></td>
+                        v-if="school?.residential_fees == null"
+                      >
+                        NA
+                      </td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.residential_fees !== 'None'"
-                        v-html="(school?.residential_fees * 1).toFixed(1)"
+                        v-if="school?.residential_fees !== null"
+                        v-html="school?.residential_fees"
                       ></td>
                       <td class="py-2 md:text-center pl-2">One Time</td>
-                    </tr>
+                    </tr> -->
                     <tr class="bg-white border-b hover:bg-red-500">
                       <td class="py-2 md:text-center">Average Fees(Day)</td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.avg_fees_day == 'None'"
-                        v-html="school?.avg_fees_day"
-                      ></td>
+                        v-if="school?.avg_fees_day == null"
+                      >
+                        NA
+                      </td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.avg_fees_day !== 'None'"
-                        v-html="(school?.avg_fees_day * 12).toFixed(1)"
+                        v-if="school?.avg_fees_day !== null"
+                        v-html="(school?.avg_fees_day * 12).toFixed(0)"
                       ></td>
                       <td class="py-2 md:text-center pl-2">Annually</td>
                     </tr>
                     <tr class="bg-white border-b hover:bg-red-500">
-                      <td class="py-2 md:text-center">
+                      <td class="py-2 md:text-center relative">
                         Average Fees(Residential)
                       </td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.avg_fees_residential == 'None'"
-                        v-html="school?.avg_fees_residential"
-                      ></td>
+                        v-if="school?.avg_fees_residential == null"
+                      >
+                        NA
+                      </td>
                       <td
                         class="py-2 md:text-center"
-                        v-if="school?.avg_fees_residential !== 'None'"
-                        v-html="(school?.avg_fees_residential * 12).toFixed(1)"
+                        v-if="school?.avg_fees_residential !== null"
+                        v-html="(school?.avg_fees_residential * 12).toFixed(0)"
                       ></td>
                       <td class="py-2 md:text-center pl-2">Annually</td>
                     </tr>

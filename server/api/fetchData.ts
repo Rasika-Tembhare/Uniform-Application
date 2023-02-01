@@ -15,8 +15,8 @@ export default defineEventHandler(async (event) => {
       },
     });
     const count = await prisma.schools.count();
-    console.log(count);
-    console.log(`Page 1: `, JSON.stringify(post, undefined, 2));
+    // console.log(count);
+    // console.log(`Page 1: `, JSON.stringify(post, undefined, 2));
     return { post, count };
   } catch (error) {
     console.error(error);

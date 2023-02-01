@@ -1,8 +1,8 @@
 <template>
-  <Head>
-    <Title>Uniform Application | {{ school?.school_name }}</Title>
+  <!-- <Head>
+    <Title> enrollto | {{ school?.school_name }}</Title>
     <Meta name="description" :content="school?.alt_name" />
-  </Head>
+  </Head> -->
   <div class="p-5 m-5 md:m-8 md:p-8">
     <LazySchoolDetails />
     <LazySchoolInformation />
@@ -31,13 +31,6 @@ const schoolStore = useSchoolStore();
 schoolStore.setData(slug as string);
 const school = schoolStore.jsonData;
 school === "" && useRouter().push("/404Error");
-// const reviewStore = useReviewStore();
-// reviewStore.setData(slug as string);
-// const review = reviewStore.jsonData;
-// const { data: school } = await useFetch("/api/fetchSchool", {
-//   method: "POST",
-//   body: slug,
-// });
 </script>
 
 <style scoped></style>

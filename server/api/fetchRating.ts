@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
       },
     });
 
-    console.dir(rating, { depth: null });
+    // console.dir(rating, { depth: null });
     return rating;
   } catch (error) {
     console.error(error);

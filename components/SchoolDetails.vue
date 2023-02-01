@@ -6,10 +6,12 @@
       <div class="flex flex-col md:flex-row w-full max-w-full">
         <div class="container items-center justify-center">
           <!-- Breadcrumbs -->
-          <div class="w-full max-w-xl justify-center">
-            <div class="text-md font-medium breadcrumbs">
+          <div class="w-full max-w-2xl md:w-full md:max-w-2xl justify-center">
+            <div class="text-md font-medium breadcrumbs relative">
               <ul class="text-accent">
-                <li><NuxtLink class="text-gray-500">Schools</NuxtLink></li>
+                <li>
+                  <NuxtLink class="text-gray-500">Schools</NuxtLink>
+                </li>
                 <li>
                   <NuxtLink class="text-gray-500">{{
                     school?.school_city
@@ -40,15 +42,13 @@
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/7641/7641727.png"
                   alt=""
-                  class="w-7 h-auto"
+                  class="w-7 h-fit"
                 />
               </div>
             </div>
             <!-- school details -->
             <div class="text-gray-500 hover:text-info">
-              <a :href="school?.school_web" rel="nofollow">{{
-                school?.school_web
-              }}</a>
+              <NuxtLink rel="nofollow">{{ school?.school_web }}</NuxtLink>
             </div>
             <div class="py-5 text-gray-500 flex">
               <div>
@@ -203,18 +203,18 @@
 </template>
 
 <script setup lang="ts">
-import { emit } from "process";
 import { useSchoolStore } from "~~/stores/school";
 import Enquiry_modal from "./Enquiry_modal.vue";
 const schoolStore = useSchoolStore();
 const school = schoolStore.jsonData;
 // const { school } = defineProps(["school"]);
+
 const sch_id = school.school_id;
-console.log(sch_id);
+// console.log(sch_id);
 
 const school_img_1 = school.school_picture;
-const school_img_2 = school.school_picture2;
-const school_img_3 = school.school_picture3;
+// const school_img_2 = school.school_picture2;
+// const school_img_3 = school.school_picture3;
 
 const ratings = await useFetch("/api/fetchRating", {
   method: "POST",
@@ -226,7 +226,7 @@ rate.value = ratings.data.value?._avg.rating?.toFixed(1);
 const countReview = ref();
 countReview.value = ratings.data.value?._count.review;
 
-console.log(rate.value);
+// console.log(rate.value);
 // console.log(avgReview);
 
 // const store = useDetailsStore();
